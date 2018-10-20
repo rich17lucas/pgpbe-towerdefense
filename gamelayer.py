@@ -106,12 +106,14 @@ class HUD(cocos.layer.Layer):
     def update_points(self, points):
         self.score_points.element.text = 'Points: %s' % points
 
-def newgame():
+
+def new_game():
     scenario = get_scenario()
     background = scenario.get_background()
     hud = HUD()
     game_layer = GameLayer(hud, scenario)
     return cocos.scene.Scene(background, game_layer, hud)
+
 
 def game_over():
     w, h = director.get_window_size()

@@ -21,7 +21,7 @@ class Explosion(cocos.sprite.Sprite):
 
 class Shoot(cocos.sprite.Sprite):
     def __init__(self, pos, offset, target):
-        super(Shoot, self).__init__(image='assets/shoot.png', position=pos)
+        super(Shoot, self).__init__(image='shoot.png', position=pos)
         self.do(ac.MoveBy(offset, 0.1) +
                 ac.CallFunc(self.kill) +
                 ac.CallFunc(target.hit))
@@ -54,8 +54,8 @@ class Actor(cocos.sprite.Sprite):
 
 class Turret(Actor):
     def __init__(self, x, y):
-        super(Turret, self).__init__('assets/turret.png', x, y)
-        self.add(cocos.sprite.Sprite('assets/range.png',
+        super(Turret, self).__init__('turret.png', x, y)
+        self.add(cocos.sprite.Sprite('range.png',
                                      opacity=50,
                                      scale=5))
         self.cshape.r = 125.0
@@ -84,7 +84,7 @@ class Turret(Actor):
 
 class Enemy(Actor):
     def __init__(self, x, y, actions):
-        super(Enemy, self).__init__('assets/tank.png', x, y)
+        super(Enemy, self).__init__('tank.png', x, y)
         self.health = 100
         self.score = 20
         self.destroyed = False
@@ -104,7 +104,7 @@ class Enemy(Actor):
 
 class Bunker(Actor):
     def __init__(self, x, y):
-        super(Bunker, self).__init__('assets/bunker.png', x, y)
+        super(Bunker, self).__init__('bunker.png', x, y)
         self.hp = 100
 
     def collide(self, other):
