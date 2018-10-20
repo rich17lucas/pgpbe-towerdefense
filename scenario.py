@@ -6,8 +6,9 @@ LEFT = ac.RotateBy(-90, 1)
 
 
 def move(x, y):
-    dur = abs(x + y) / 100
+    dur = abs(x + y) / 100.0
     return ac.MoveBy((x, y), duration=dur)
+
 
 class Scenario(object):
     def __init__(self, tmx_map, turrets, bunker, enemy_start):
@@ -15,7 +16,7 @@ class Scenario(object):
         self.turret_slots = turrets
         self.bunker_position = bunker
         self.enemy_start = enemy_start
-        self.actions = None
+        self._actions = None
 
 
     @property
@@ -41,7 +42,8 @@ def get_scenario():
                     (96, 32), (224, 32), (352, 32), (480, 32)]
     bunker_position = (528, 430)
     enemy_start = (-80, 110)
-    sc = Scenario(tmx_map='map0', turrets=turret_slots, bunker=bunker_position, enemy_start=enemy_start)
+    sc = Scenario('map0', turret_slots,
+                  bunker_position, enemy_start)
     sc.actions = [move(610, 0), LEFT, move(0, 160),
                   LEFT, move(-415, 0), RIGHT,
                   move(0, 160), RIGHT, move(420, 0)]
