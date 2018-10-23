@@ -12,12 +12,16 @@ import actors
 import mainmenu
 from scenario import get_scenario
 
+import logging
+logger = logging.getLogger("gamelayer")
 
 class GameLayer(cocos.layer.Layer):
     is_event_handler = True
 
     def __init__(self, hud, scenario):
         super(GameLayer, self).__init__()
+        self.logger = logging.getLogger('gamelayer.GameLayer')
+        self.logger.info('Creating instance of GameLayer')
         self.hud = hud
         self.scenario = scenario
         self.score = self._score = 0
@@ -25,6 +29,7 @@ class GameLayer(cocos.layer.Layer):
         self.turrets = []
 
         w, h = director.get_window_size()
+        self.logger.info('w: %, h: %', w, h)
         cell_size = 32
         self.coll_man = cm.CollisionManagerGrid(0, w, 0, h, cell_size, cell_size)
         self.coll_man_slots = cm.CollisionManagerGrid(0, w, 0, h, cell_size, cell_size)
